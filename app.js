@@ -1,4 +1,4 @@
-const loginBtn = document.getElementById("login");
+        const loginBtn = document.getElementById("login");
         loginBtn.addEventListener("click", function () {
             const loginArea = document.getElementById("login-area");
             loginArea.style.display = "none";
@@ -10,11 +10,15 @@ const loginBtn = document.getElementById("login");
         depositBtn.addEventListener("click", function () {
             const depositNumber = getInputNumber("depositAmount");
 
-            updateSpanText("currentDeposit", depositNumber);
-            updateSpanText("currentBalance", depositNumber);
+            if(depositNumber < 0) {
+                alert("Deposit number can not be negative.")
+            } else {
+                updateSpanText("currentDeposit", depositNumber);
+                updateSpanText("currentBalance", depositNumber);
 
-            document.getElementById("depositAmount").value = "";
-            
+                document.getElementById("depositAmount").value = "";
+            }
+
         });
 
         const withdrawBtn = document.getElementById("addWithdraw");
@@ -25,8 +29,8 @@ const loginBtn = document.getElementById("login");
             updateSpanText("currentBalance", -1 * withdrawNumber);
 
             document.getElementById("withDrawAmount").value = "";
-    
-        }); 
+
+        });
 
         function getInputNumber(id) {
             const amount = document.getElementById(id).value;
